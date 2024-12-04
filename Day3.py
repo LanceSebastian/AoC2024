@@ -17,7 +17,7 @@ def doOrDont(expression, do):
 
 # finds expressions "mul(X,Y)" where X and Y are 1-3 digit integers,
 # then multiplies them.
-def parse_and_multiply(expression, do):
+def parseAndMultiply(expression, do):
     match = re.search(r"mul\((\d{1,3}),(\d{1,3})\)", expression)
 
     if match and do:
