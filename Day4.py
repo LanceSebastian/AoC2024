@@ -7,43 +7,33 @@ def findCrossMAS(array, x,y):
     xMax = len(array[y])
     yMax = len(array)
     
-    if y <= 1 or y > yMax - 2:
+    if y <= 0 or y > yMax - 2:
         return 0
-    if x <= 1 or x > xMax - 2:
+    if x <= 0 or x > xMax - 2:
         return 0
     
     content = []
     expression1 = ""
     expression2 = ""
 
-    
-
     content = [array[y-1][x-1] + '.' + array[y-1][x+1],
                '.' + array[y][x] + '.',
                array[y+1][x-1] + '.' + array[y+1][x+1] 
                ]
-
-    for string in content:
-        if 'X' in string:
-            return 0
-
-    #print(content)
-
-    #print(f"{x},{y}")
     
     expression1 = content[0][0]+content[1][1]+content[2][2]
     expression2 = content[2][0]+content[1][1]+content[0][2]
 
-    #print(f"({expression1})({expression2})")
+    if expression1 == "MAS" and expression2 == "MAS":
+        return 1
+    if expression1 == "MAS" and expression2 == "SAM":
+        return 1
+    if expression1 == "SAM" and expression2 == "SAM":
+        return 1
+    if expression1 == "SAM" and expression2 == "MAS":
+        return 1
 
-    if expression1 == "MAM" or expression1 == "SAS":
-        #print(f"({expression1})({expression2})")
-        return 0
-    if expression2 == "SAS" or expression2 == "MAM":
-        #print(f"({expression1})({expression2})")
-        return 0
-    
-    return 1
+    return 0
 
 # Search surrounding directions for XMAS
 def findXMAS(array, x, y):
